@@ -1,74 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
-<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD. Although MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD. No support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
-<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.0.1.xsd">
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
 	<header>
-		<license>http://opensource.org/licenses/gpl-license.php GNU General Public License v2</license>
-		<title lang="en">Forum prune move</title>
-		<description lang="en">Add an option to move posts instead of delete them on pruning.</description>
-		<author-notes lang="en">Requested by bulldogg597, one of the best MOD requests i've seen. </author-notes>
+		<meta name="generator" content="MODX file generated with PP MODX Creator 1.0.1 by tumba25 (phpBB version) at phpbbmodders.net"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Forum prune move]]></title>
+		<description lang="en"><![CDATA[Add an option to move posts instead of delete them on pruning.]]></description>
+		<author-notes lang="en"><![CDATA[Requested by bulldogg597, one of the best MOD requests i've seen.]]></author-notes>
 		<author-group>
 			<author>
-				<realname>Igor Wiedler</realname>
-				<email>evil@phpbbmodders.net</email>
-				<username>evil3</username>
-				<homepage>http://phpbbmodders.net</homepage>
+				<realname><![CDATA[Igor Wiedler]]></realname>
+				<username><![CDATA[evil3]]></username>
+				<homepage><![CDATA[http://phpbbmodders.net]]></homepage>
+				<contributions-group>
+					<contributions status="past" from="2008-04-12" to="2011-06-01" position="Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Jari Kanerva]]></realname>
+				<username><![CDATA[tumba25]]></username>
+				<homepage><![CDATA[http://phpbbmodders.net]]></homepage>
+				<contributions-group>
+					<contributions status="current" from="2011-06-01" position="Developer"/>
+				</contributions-group>
 			</author>
 		</author-group>
-		<mod-version>
-			<major>1</major>
-			<minor>0</minor>
-			<revision>1</revision>
-		</mod-version>
+		<mod-version>1.1.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
-			<target-version>
-				<target-primary>3.0.0</target-primary>
-				<target-major allow="exact">3</target-major>
-				<target-minor allow="exact">0</target-minor>
-				<target-revision allow="after-equal">0</target-revision>
-			</target-version>
+			<target-version>3.0.8</target-version>
 		</installation>
 		<history>
 			<entry>
-				<date>2008-02-22</date>
-				<rev-version>
-					<major>1</major>
-					<minor>0</minor>
-					<revision>0</revision>
-				</rev-version>
+				<date>2011-06-01</date>
+				<rev-version>1.1.0</rev-version>
 				<changelog lang="en">
-					<change>Initial release</change>
-				</changelog>
-			</entry>
-			<entry>
-				<date>2008-04-06</date>
-				<rev-version>
-					<major>1</major>
-					<minor>0</minor>
-					<revision>0</revision>
-					<release>a</release>
-				</rev-version>
-				<changelog lang="en">
-					<change>MODX file</change>
+					<change><![CDATA[MODX update]]></change>
 				</changelog>
 			</entry>
 			<entry>
 				<date>2008-12-06</date>
-				<rev-version>
-					<major>1</major>
-					<minor>0</minor>
-					<revision>1</revision>
-				</rev-version>
+				<rev-version>1.0.1.</rev-version>
 				<changelog lang="en">
-					<change>some small changes and fixed pauls pickyness</change>
+					<change><![CDATA[some small changes and fixed pauls pickyness]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-04-06</date>
+				<rev-version>1.0.0.a</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[MODX file]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2008-02-22</date>
+				<rev-version>1.0.0.</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Initial release]]></change>
 				</changelog>
 			</entry>
 		</history>
 	</header>
 	<action-group>
-		<sql>ALTER TABLE phpbb_forums ADD COLUMN prune_move INT(9) UNSIGNED NOT NULL DEFAULT 0;</sql>
+		<sql><![CDATA[ALTER TABLE phpbb_forums ADD COLUMN prune_move INT(9) UNSIGNED NOT NULL DEFAULT 0;]]></sql>
 		<open src="adm/style/acp_forums.html">
 			<edit>
 				<find><![CDATA[		<dl>
@@ -82,10 +79,44 @@
 		</dl>]]></action>
 			</edit>
 		</open>
+		<open src="includes/functions_admin.php">
+			<edit>
+				<find><![CDATA[function prune(]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[$auto_sync = true]]></inline-find>
+					<inline-action type="after-add"><![CDATA[, $prune_move = false]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[	return delete_topics('topic_id', $topic_list, $auto_sync, false);]]></find>
+				<action type="before-add"><![CDATA[	if ($prune_move)
+	{
+		// $prune_move is the forum id we want to move our posts to
+		return move_topics($topic_list, $prune_move, $auto_sync);
+	}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[function auto_prune($forum_id]]></find>
+			</edit>
+			<edit>
+				<find><![CDATA[	$sql = 'SELECT forum_name]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[forum_name]]></inline-find>
+					<inline-action type="after-add"><![CDATA[, prune_move]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[prune($forum_id, $prune_mode, $prune_date, $prune_flags, true]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[prune($forum_id, $prune_mode, $prune_date, $prune_flags, true]]></inline-find>
+					<inline-action type="after-add"><![CDATA[, $row['prune_move']]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
 		<open src="includes/acp/acp_forums.php">
 			<edit>
-				<find>						'forum_password_unset'	=&gt; request_var('forum_password_unset', false),
-					);</find>
+				<find><![CDATA[						'forum_password_unset'	=> request_var('forum_password_unset', false),
+					);]]></find>
 				<action type="after-add"><![CDATA[					$forum_data['prune_move'] = 0;
 					if ($forum_data['forum_type'] == FORUM_POST)
 					{
@@ -93,55 +124,21 @@
 					}]]></action>
 			</edit>
 			<edit>
-				<find>							'prune_freq'			=&gt; 1,</find>
-				<action type="after-add">							'prune_move'			=&gt; 0,</action>
+				<find><![CDATA[							'prune_freq'			=> 1,]]></find>
+				<action type="after-add"><![CDATA[							'prune_move'			=> 0,]]></action>
 			</edit>
 			<edit>
-				<find>					'S_PRUNE_ENABLE'			=&gt; ($forum_data['enable_prune']) ? true : false,</find>
-				<action type="after-add">					'S_PRUNE_MOVE_OPTIONS'		=&gt; make_forum_select(($action == 'edit') ? $forum_data['prune_move'] : false, ($action == 'edit') ? $forum_data['forum_id'] : false, false, true),</action>
-			</edit>
-		</open>
-		<open src="includes/functions_admin.php">
-			<edit>
-				<find>function prune(</find>
-				<inline-edit>
-					<inline-find>$auto_sync = true</inline-find>
-					<inline-action type="after-add">, $prune_move = false</inline-action>
-				</inline-edit>
-			</edit>
-			<edit>
-				<find>	return delete_topics('topic_id', $topic_list, $auto_sync, false);</find>
-				<action type="before-add">	if ($prune_move)
-	{
-		// $prune_move is the forum id we want to move our posts to
-		return move_topics($topic_list, $prune_move, $auto_sync);
-	}</action>
-			</edit>
-			<edit>
-				<find>function auto_prune($forum_id</find>
-			</edit>
-			<edit>
-				<find>	$sql = 'SELECT forum_name</find>
-				<inline-edit>
-					<inline-find>forum_name</inline-find>
-					<inline-action type="after-add">, prune_move</inline-action>
-				</inline-edit>
-			</edit>
-			<edit>
-				<find>prune($forum_id, $prune_mode, $prune_date, $prune_flags, true</find>
-				<inline-edit>
-					<inline-find>prune($forum_id, $prune_mode, $prune_date, $prune_flags, true</inline-find>
-					<inline-action type="after-add">, $row['prune_move']</inline-action>
-				</inline-edit>
+				<find><![CDATA[					'S_PRUNE_ENABLE'			=> ($forum_data['enable_prune']) ? true : false,]]></find>
+				<action type="after-add"><![CDATA[					'S_PRUNE_MOVE_OPTIONS'		=> make_forum_select(($action == 'edit') ? $forum_data['prune_move'] : false, ($action == 'edit') ? $forum_data['forum_id'] : false, false, true),]]></action>
 			</edit>
 		</open>
 		<open src="language/en/acp/forums.php">
 			<edit>
-				<find>?&gt;</find>
-				<action type="before-add">$lang = array_merge($lang, array(
-	'PRUNE_MOVE'			=&gt; 'Move pruned forums',
-	'PRUNE_MOVE_EXPLAIN'	=&gt; 'If you select a forum from the list below, topics will be moved to that forum instead of deleted.',
-));</action>
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[$lang = array_merge($lang, array(
+	'PRUNE_MOVE'			=> 'Move pruned forums',
+	'PRUNE_MOVE_EXPLAIN'	=> 'If you select a forum from the list below, topics will be moved to that forum instead of deleted.',
+));]]></action>
 			</edit>
 		</open>
 	</action-group>
