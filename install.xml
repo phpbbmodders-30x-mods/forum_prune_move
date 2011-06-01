@@ -96,9 +96,6 @@
 	}]]></action>
 			</edit>
 			<edit>
-				<find><![CDATA[function auto_prune($forum_id]]></find>
-			</edit>
-			<edit>
 				<find><![CDATA[	$sql = 'SELECT forum_name]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[forum_name]]></inline-find>
