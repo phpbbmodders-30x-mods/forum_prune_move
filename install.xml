@@ -11,14 +11,6 @@
 		<author-notes lang="en"><![CDATA[Requested by bulldogg597, one of the best MOD requests i've seen.]]></author-notes>
 		<author-group>
 			<author>
-				<realname><![CDATA[Igor Wiedler]]></realname>
-				<username><![CDATA[evil3]]></username>
-				<homepage><![CDATA[http://phpbbmodders.net]]></homepage>
-				<contributions-group>
-					<contributions status="past" from="2008-04-12" to="2011-06-01" position="Developer"/>
-				</contributions-group>
-			</author>
-			<author>
 				<realname><![CDATA[Jari Kanerva]]></realname>
 				<username><![CDATA[tumba25]]></username>
 				<homepage><![CDATA[http://phpbbmodders.net]]></homepage>
@@ -26,6 +18,14 @@
 					<contributions status="current" from="2011-06-01" position="Developer"/>
 				</contributions-group>
 			</author>
+			<author>
+				<realname><![CDATA[Igor Wiedler]]></realname>
+				<username><![CDATA[evil3]]></username>
+				<homepage><![CDATA[http://phpbbmodders.net]]></homepage>
+				<contributions-group>
+					<contributions status="past" from="2008-04-12" to="2011-06-01" position="Developer"/>
+				</contributions-group>
+			</author>			
 		</author-group>
 		<mod-version>1.1.0</mod-version>
 		<installation>
@@ -65,7 +65,9 @@
 		</history>
 	</header>
 	<action-group>
-		<sql><![CDATA[ALTER TABLE phpbb_forums ADD COLUMN prune_move INT(9) UNSIGNED NOT NULL DEFAULT 0;]]></sql>
+		<copy>
+			<file from="root/*.*" to="*.*"/>
+		</copy>	
 		<open src="adm/style/acp_forums.html">
 			<edit>
 				<find><![CDATA[		<dl>
@@ -138,5 +140,6 @@
 ));]]></action>
 			</edit>
 		</open>
+	<php-installer><![CDATA[fpm_mod_install.php]]></php-installer>		
 	</action-group>
 </mod>
